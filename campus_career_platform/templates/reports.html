@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Reports - CampusConnect</title>
+  <meta name="description" content="Student performance reports and analytics on CampusConnect."/>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}"/>
+  <style>
+    .toolbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-bottom: 24px;
+    }
+    .search-box {
+      display: flex;
+      align-items: center;
+      background: var(--white);
+      border: 2px solid var(--gray-300);
+      border-radius: 50px;
+      overflow: hidden;
+      padding: 0 16px;
+      transition: var(--transition);
+    }
+    .search-box:focus-within { border-color: var(--navy); box-shadow: 0 0 0 3px rgba(30,39,97,0.1); }
+    .search-box input {
+      border: none;
+      outline: none;
+      padding: 10px 8px;
+      font-size: 0.88rem;
+      font-family: "Roboto", sans-serif;
+      color: var(--gray-700);
+      width: 240px;
+      background: transparent;
+    }
+    .score-pill {
+      display: inline-block;
+      padding: 4px 10px;
+      border-radius: 50px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      font-family: "Poppins", sans-serif;
+    }
+    .score-high { background: #d1fae5; color: #065f46; }
+    .score-mid { background: #dbeafe; color: #1e40af; }
+    .score-low { background: #fef3c7; color: #92400e; }
+    .table-wrapper { background: var(--white); border-radius: var(--radius-md); box-shadow: var(--shadow-md); overflow: hidden; }
+    .rank-badge {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: var(--blue-light);
+      color: var(--navy);
+      font-size: 0.75rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: "Poppins", sans-serif;
+    }
+    .student-cell {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .student-avatar {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #1E2761, #4a6cf7);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-size: 0.72rem;
+      font-weight: 700;
+      font-family: "Poppins", sans-serif;
+      flex-shrink: 0;
+    }
+    .empty-state {
+      text-align: center;
+      padding: 28px;
+      color: var(--gray-500);
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <a href="/" class="navbar-brand">
+      <span class="brand-icon">CC</span>
+      CampusConnect
+    </a>
+    <ul class="nav-links">
+      <li><a href="/dashboard">Dashboard</a></li>
+      <li><a href="/reports">Reports</a></li>
+      <li><a href="/help">Help</a></li>
+      <li><a href="/about">About</a></li>
+      {% if logged_in_student %}
+      <li><a href="/logout" class="btn-nav">Logout</a></li>
+      {% else %}
+      <li><a href="/login" class="btn-nav">Login</a></li>
+      {% endif %}
+    </ul>
+  </nav>
+
+  <main>
+    <div class="page-header">
+      <h1>Reports</h1>
+      <p>Track student performance, project output, reels, and campus activity in one leaderboard.</p>
+    </div>
+
+    <div class="container" style="padding-top:48px; padding-bottom:64px;">
+      <div class="stat-bar" style="margin-bottom:36px;">
+        <div class="stat-item">
+          <div class="stat-value" data-count="{{ summary.total_students }}">{{ summary.total_students }}</div>
+          <div class="stat-label">Total Students</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-value" data-count="{{ summary.total_projects }}">{{ summary.total_projects }}</div>
+          <div class="stat-label">Active Projects</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-value" data-count="{{ summary.total_reels }}">{{ summary.total_reels }}</div>
+          <div class="stat-label">Reels Posted</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-value" data-count="{{ summary.mentor_sessions }}">{{ summary.mentor_sessions }}</div>
+          <div class="stat-label">Mentor Sessions</div>
+        </div>
+      </div>
+
+      <div class="toolbar">
+        <div>
+          <h2 class="section-title" style="font-size:1.4rem; margin-bottom:4px;">Student Performance Table</h2>
+          <p id="report-summary" style="font-size:0.85rem; color:var(--gray-500);">
+            Showing {{ students|length }} students · Sorted by Skill Score · Average Score {{ summary.avg_skill_score }}
+          </p>
+        </div>
+        <div style="display:flex; gap:12px; align-items:center; flex-wrap:wrap;">
+          <div class="search-box">
+            <span>SR</span>
+            <input type="text" id="search-input" placeholder="Search by student, roll number, or department"/>
+          </div>
+          <button class="btn btn-primary btn-sm" id="btn-export" type="button">Export CSV</button>
+          {% if logged_in_student %}
+          <a href="{{ url_for('view_reports', student=logged_in_student.roll_number) }}" class="btn btn-accent btn-sm">View My Detail</a>
+          {% endif %}
+        </div>
+      </div>
+
+      <div class="table-wrapper">
+        <table id="reports-table">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Student Name</th>
+              <th>Roll No.</th>
+              <th>Department</th>
+              <th>Skill Score</th>
+              <th>Projects</th>
+              <th>Reels</th>
+              <th>Status</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for student in students %}
+            <tr data-search="{{ (student.name ~ ' ' ~ student.roll_number ~ ' ' ~ student.department)|lower }}">
+              <td><div class="rank-badge">{{ loop.index }}</div></td>
+              <td>
+                <div class="student-cell">
+                  <div class="student-avatar">{{ student.initials }}</div>
+                  <div>
+                    <strong>{{ student.name }}</strong><br/>
+                    <span style="font-size:0.76rem; color:var(--gray-500);">{{ student.email }}</span>
+                  </div>
+                </div>
+              </td>
+              <td><code>{{ student.roll_number }}</code></td>
+              <td>{{ student.department }}</td>
+              <td><span class="score-pill score-{{ score_band(student.skill_score) }}">{{ student.skill_score }} / 100</span></td>
+              <td>{{ student.projects }}</td>
+              <td>{{ student.reels }}</td>
+              <td><span class="badge badge-{{ status_badge(student.status) }}">{{ student.status }}</span></td>
+              <td><a href="{{ url_for('view_reports', student=student.roll_number) }}" class="btn btn-outline btn-sm">View</a></td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+        <div id="reports-empty" class="empty-state">No students matched that search.</div>
+      </div>
+
+      <div style="margin-top:18px; display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px; align-items:center;">
+        <p style="font-size:0.82rem; color:var(--gray-500);">Academic Year 2024-2025 · Department focus: CSE - Cyber Security</p>
+        <div style="display:flex; gap:10px;">
+          <span class="score-pill score-high">High: 85+</span>
+          <span class="score-pill score-mid">Mid: 70-84</span>
+          <span class="score-pill score-low">Low: below 70</span>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-brand">CampusConnect</div>
+    <div class="footer-links">
+      <a href="/">Home</a>
+      <a href="/dashboard">Dashboard</a>
+      <a href="/reports">Reports</a>
+      <a href="/help">Help</a>
+    </div>
+    <div class="footer-divider"></div>
+    <p>&copy; 2026 Guru Nanak Institutions Technical Campus. All rights reserved.</p>
+  </footer>
+
+  <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Help - CampusConnect</title>
+  <meta name="description" content="Help, FAQs, and usage guidance for CampusConnect."/>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}"/>
+  <style>
+    .faq-card {
+      background: var(--white);
+      border-radius: 20px;
+      padding: 28px;
+      box-shadow: var(--shadow-md);
+      border-left: 4px solid #4a6cf7;
+    }
+    .faq-card h3 {
+      color: var(--navy);
+      margin-bottom: 10px;
+    }
+    .faq-card p {
+      color: var(--gray-500);
+      line-height: 1.7;
+    }
+    .support-box {
+      background: linear-gradient(135deg, #111e4e 0%, #1e2761 55%, #3958c9 100%);
+      border-radius: 28px;
+      color: var(--white);
+      padding: 42px;
+      text-align: center;
+      margin-top: 48px;
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <a href="/" class="navbar-brand">
+      <span class="brand-icon">CC</span>
+      CampusConnect
+    </a>
+    <ul class="nav-links">
+      <li><a href="/">Home</a></li>
+      <li><a href="/about">About</a></li>
+      <li><a href="/help">Help</a></li>
+      <li><a href="/reports">Reports</a></li>
+      {% if logged_in_student %}
+      <li><a href="/dashboard" class="btn-nav">Dashboard</a></li>
+      {% else %}
+      <li><a href="/login" class="btn-nav">Login</a></li>
+      {% endif %}
+    </ul>
+  </nav>
+
+  <main>
+    <div class="page-header">
+      <h1>Help and Support</h1>
+      <p>Quick guidance for making the most of the platform during demo and usage.</p>
+    </div>
+
+    <div class="container" style="padding-top:56px; padding-bottom:64px;">
+      <div class="text-center mb-3">
+        <h2 class="section-title">Frequently Asked Questions</h2>
+        <p class="section-sub">The highest-signal actions are now fully implemented.</p>
+      </div>
+
+      <div class="card-grid card-grid-2">
+        <div class="faq-card">
+          <h3>How do I create a student account?</h3>
+          <p>Open the login page, switch to sign up, and use your institutional email. The platform creates your student profile instantly and redirects you into the main workflow.</p>
+        </div>
+        <div class="faq-card">
+          <h3>Can I update my profile details?</h3>
+          <p>Yes. The dashboard now includes a live edit form for name, headline, department, semester, and skills. Saving updates your report-ready profile data.</p>
+        </div>
+        <div class="faq-card">
+          <h3>How do I add a project?</h3>
+          <p>Use the Add Project panel in the dashboard. New project entries are stored, shown in the portfolio, and reflected in reports and score updates.</p>
+        </div>
+        <div class="faq-card">
+          <h3>What affects the skill score?</h3>
+          <p>The score is influenced by skill coverage, project count, activity signals, mentor presence, and endorsements. It is recalculated when the profile changes.</p>
+        </div>
+      </div>
+
+      <div class="support-box">
+        <h2 style="margin-bottom:10px;">Demo support note</h2>
+        <p style="color:rgba(255,255,255,0.82); line-height:1.7; max-width:680px; margin:0 auto 18px;">
+          This version is designed to run cleanly even when MongoDB is unavailable, so you can present the platform confidently without environment blockers.
+        </p>
+        <a href="/login" class="btn btn-light">Go to Login</a>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-brand">CampusConnect</div>
+    <div class="footer-links">
+      <a href="/">Home</a>
+      <a href="/about">About</a>
+      <a href="/help">Help</a>
+      <a href="/reports">Reports</a>
+    </div>
+    <div class="footer-divider"></div>
+    <p>&copy; 2026 Guru Nanak Institutions Technical Campus. All rights reserved.</p>
+  </footer>
+
+  <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>

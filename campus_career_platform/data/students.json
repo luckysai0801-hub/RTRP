@@ -1,0 +1,457 @@
+[
+  {
+    "name": "K. Asmitha",
+    "roll_number": "24WJ1A6201",
+    "email": "asmitha@gnitc.ac.in",
+    "password_hash": "scrypt:32768:8:1$ALAdJHnYEnFefQ90$f858a492deff2f4942047ef3d0c0b35776b1911a89e6a60effe004c4fa84c12f6a5aa7ceeb839d72a63517a9162e2524a3f5b036147122ade0bc4b1f85ab600a",
+    "department": "CSE - Cyber Security",
+    "semester": "Semester IV",
+    "skill_score": 85,
+    "projects": 3,
+    "reels": 5,
+    "mentors": 2,
+    "endorsements": 7,
+    "profile_views": 48,
+    "reel_views": 312,
+    "status": "Active",
+    "institution": "Guru Nanak Institutions Technical Campus",
+    "academic_year": "2024-2025",
+    "initials": "KA",
+    "headline": "Building skills, proof-of-work, and campus visibility.",
+    "badges": [
+      "First Uploader",
+      "Reel Creator",
+      "Mentor Connect",
+      "Score Climber"
+    ],
+    "skills": [
+      {
+        "name": "Python",
+        "score": 80,
+        "color": "linear-gradient(90deg, #1E2761, #4a6cf7)"
+      },
+      {
+        "name": "Web Development",
+        "score": 75,
+        "color": "linear-gradient(90deg, #7a5af8, #4a6cf7)"
+      },
+      {
+        "name": "DSA",
+        "score": 65,
+        "color": "linear-gradient(90deg, #10b981, #4a6cf7)"
+      },
+      {
+        "name": "Communication",
+        "score": 70,
+        "color": "linear-gradient(90deg, #f59e0b, #ef4444)"
+      },
+      {
+        "name": "Cyber Security",
+        "score": 72,
+        "color": "linear-gradient(90deg, #ef4444, #7a5af8)"
+      }
+    ],
+    "recent_activity": [
+      {
+        "icon": "folder",
+        "title": "Uploaded project: Campus Career Platform",
+        "subtitle": "Tech Stack: Python, Flask, MongoDB, HTML/CSS/JS",
+        "time": "Today, 9:30 AM"
+      },
+      {
+        "icon": "video",
+        "title": "Watched skill reel: Python Basics for Beginners",
+        "subtitle": "Posted by Ravi Teja \u00b7 1,200 views",
+        "time": "Yesterday, 7:45 PM"
+      },
+      {
+        "icon": "mentor",
+        "title": "Connected with mentor: Mr. Chaitanya Kumar",
+        "subtitle": "Assistant Professor, CSE - Cyber Security",
+        "time": "Apr 15, 2026"
+      },
+      {
+        "icon": "badge",
+        "title": "Earned badge: First Project Uploader",
+        "subtitle": "Recognition for publishing a verified campus project.",
+        "time": "Apr 14, 2026"
+      }
+    ],
+    "upcoming": [
+      {
+        "title": "Mentor Session",
+        "subtitle": "Mr. Chaitanya Kumar \u00b7 Apr 26, 4:00 PM"
+      },
+      {
+        "title": "Project Submission",
+        "subtitle": "Campus Platform \u00b7 Apr 29, 11:59 PM"
+      }
+    ],
+    "portfolio": [
+      {
+        "title": "Campus Career Networking Platform",
+        "description": "A campus-exclusive networking application with skill tracking, mentor visibility, and analytics-driven reports.",
+        "status": "Completed",
+        "stack": [
+          "Python",
+          "Flask",
+          "MongoDB",
+          "HTML/CSS/JS",
+          "REST API"
+        ]
+      },
+      {
+        "title": "Student Attendance Management System",
+        "description": "An attendance tracker for faculty with low-attendance alerts and downloadable reports.",
+        "status": "In Progress",
+        "stack": [
+          "Python",
+          "Django",
+          "SQLite",
+          "Bootstrap"
+        ]
+      },
+      {
+        "title": "Cyber Security Threat Detection Dashboard",
+        "description": "A lab dashboard that visualizes suspicious activity and firewall events for classroom simulations.",
+        "status": "Completed",
+        "stack": [
+          "Python",
+          "Pandas",
+          "Matplotlib",
+          "Scapy",
+          "HTML/JS"
+        ]
+      }
+    ],
+    "created_at": "2026-04-24T17:01:56.482379",
+    "updated_at": "2026-04-24T17:01:56.482379"
+  },
+  {
+    "name": "K. Sri Sai Sharanya",
+    "roll_number": "24WJ1A6202",
+    "email": "srisai@gnitc.ac.in",
+    "password_hash": "scrypt:32768:8:1$oUyf8ynbi7XBXsEu$527846dbe1ce624215816fc741eeaee2e454d4ef13558571dd306a38f7f0a35a7e6efb2614716520da9d0c4e4b4b9d6ce8ff02cb3887511eefa16cb80645bfab",
+    "department": "CSE - Cyber Security",
+    "semester": "Semester IV",
+    "skill_score": 78,
+    "projects": 2,
+    "reels": 4,
+    "mentors": 1,
+    "endorsements": 5,
+    "profile_views": 34,
+    "reel_views": 208,
+    "status": "Active",
+    "institution": "Guru Nanak Institutions Technical Campus",
+    "academic_year": "2024-2025",
+    "initials": "KS",
+    "headline": "Building skills, proof-of-work, and campus visibility.",
+    "badges": [
+      "Frontend Builder",
+      "Mentor Ready"
+    ],
+    "skills": [
+      {
+        "name": "Python",
+        "score": 74,
+        "color": "linear-gradient(90deg, #1E2761, #4a6cf7)"
+      },
+      {
+        "name": "Web Development",
+        "score": 81,
+        "color": "linear-gradient(90deg, #7a5af8, #4a6cf7)"
+      },
+      {
+        "name": "DSA",
+        "score": 68,
+        "color": "linear-gradient(90deg, #10b981, #4a6cf7)"
+      },
+      {
+        "name": "Communication",
+        "score": 72,
+        "color": "linear-gradient(90deg, #f59e0b, #ef4444)"
+      }
+    ],
+    "recent_activity": [
+      {
+        "icon": "folder",
+        "title": "Uploaded project: Placement Prep Tracker",
+        "subtitle": "Tracks coding rounds, resume tasks, and mock interviews.",
+        "time": "Today, 8:00 AM"
+      },
+      {
+        "icon": "video",
+        "title": "Posted reel: HTML Portfolio Tips",
+        "subtitle": "Reached 870 views in two days.",
+        "time": "Apr 22, 2026"
+      }
+    ],
+    "upcoming": [
+      {
+        "title": "Resume Review",
+        "subtitle": "Faculty panel \u00b7 Apr 27, 2:00 PM"
+      },
+      {
+        "title": "Mock Interview",
+        "subtitle": "Aptitude and HR practice \u00b7 Apr 30, 10:00 AM"
+      }
+    ],
+    "portfolio": [
+      {
+        "title": "Placement Prep Tracker",
+        "description": "Helps students track resume tasks, coding sheets, and interview milestones in one workflow.",
+        "status": "Completed",
+        "stack": [
+          "Flask",
+          "SQLite",
+          "Bootstrap"
+        ]
+      },
+      {
+        "title": "Portfolio Builder",
+        "description": "A responsive builder for personal academic portfolios with project highlights.",
+        "status": "In Progress",
+        "stack": [
+          "HTML",
+          "CSS",
+          "JavaScript"
+        ]
+      }
+    ],
+    "created_at": "2026-04-24T17:01:57.270868",
+    "updated_at": "2026-04-24T17:01:57.270868"
+  },
+  {
+    "name": "K. Manideepika",
+    "roll_number": "24WJ1A6203",
+    "email": "manideepika@gnitc.ac.in",
+    "password_hash": "scrypt:32768:8:1$HP7EOujaZy2DP1AP$f1beadbca49c944869114d84c6aaa854bcf075ecbed4d8147bab3a67c118190c9c2458343b8b1c525d0c571caccb0641e222483c720e146d07410dffd7e6a854",
+    "department": "CSE - Cyber Security",
+    "semester": "Semester IV",
+    "skill_score": 91,
+    "projects": 4,
+    "reels": 7,
+    "mentors": 3,
+    "endorsements": 11,
+    "profile_views": 61,
+    "reel_views": 420,
+    "status": "Active",
+    "institution": "Guru Nanak Institutions Technical Campus",
+    "academic_year": "2024-2025",
+    "initials": "KM",
+    "headline": "Building skills, proof-of-work, and campus visibility.",
+    "badges": [
+      "Top Performer",
+      "Reel Creator",
+      "Mentor Connect"
+    ],
+    "skills": [
+      {
+        "name": "Python",
+        "score": 89,
+        "color": "linear-gradient(90deg, #1E2761, #4a6cf7)"
+      },
+      {
+        "name": "Web Development",
+        "score": 84,
+        "color": "linear-gradient(90deg, #7a5af8, #4a6cf7)"
+      },
+      {
+        "name": "DSA",
+        "score": 86,
+        "color": "linear-gradient(90deg, #10b981, #4a6cf7)"
+      },
+      {
+        "name": "Communication",
+        "score": 79,
+        "color": "linear-gradient(90deg, #f59e0b, #ef4444)"
+      },
+      {
+        "name": "Cyber Security",
+        "score": 88,
+        "color": "linear-gradient(90deg, #ef4444, #7a5af8)"
+      }
+    ],
+    "recent_activity": [
+      {
+        "icon": "badge",
+        "title": "Skill score updated: 88 to 91",
+        "subtitle": "Improved after mentor validation and project review.",
+        "time": "Today, 11:10 AM"
+      }
+    ],
+    "upcoming": [
+      {
+        "title": "Hackathon Demo",
+        "subtitle": "Department innovation cell \u00b7 Apr 28, 1:00 PM"
+      }
+    ],
+    "portfolio": [
+      {
+        "title": "Threat Detection Dashboard",
+        "description": "An analytics dashboard to inspect attack patterns and anomaly spikes.",
+        "status": "Completed",
+        "stack": [
+          "Flask",
+          "Chart.js",
+          "Pandas"
+        ]
+      }
+    ],
+    "created_at": "2026-04-24T17:01:58.798687",
+    "updated_at": "2026-04-24T17:01:58.798687"
+  },
+  {
+    "name": "P. Ravi Teja",
+    "roll_number": "24WJ1A6204",
+    "email": "raviteja@gnitc.ac.in",
+    "password_hash": "scrypt:32768:8:1$hDGAXKYo190w6Maa$76b5324399490b7540489b2bd45c8325a128c1d648177f0e2c765e1e8df4eb9e5db6bbbfc4f5e8c5b71f57a10f6280fe019e1fef2e2c3f78b058292a4bd94616",
+    "department": "CSE - Cyber Security",
+    "semester": "Semester IV",
+    "skill_score": 70,
+    "projects": 1,
+    "reels": 2,
+    "mentors": 1,
+    "endorsements": 3,
+    "profile_views": 21,
+    "reel_views": 143,
+    "status": "Inactive",
+    "institution": "Guru Nanak Institutions Technical Campus",
+    "academic_year": "2024-2025",
+    "initials": "PR",
+    "headline": "Building skills, proof-of-work, and campus visibility.",
+    "badges": [
+      "Quick Learner"
+    ],
+    "skills": [
+      {
+        "name": "Python",
+        "score": 68,
+        "color": "linear-gradient(90deg, #1E2761, #4a6cf7)"
+      },
+      {
+        "name": "Web Development",
+        "score": 62,
+        "color": "linear-gradient(90deg, #7a5af8, #4a6cf7)"
+      },
+      {
+        "name": "DSA",
+        "score": 64,
+        "color": "linear-gradient(90deg, #10b981, #4a6cf7)"
+      }
+    ],
+    "recent_activity": [
+      {
+        "icon": "video",
+        "title": "Posted reel: Python Basics for Beginners",
+        "subtitle": "Beginner-friendly recap of Python loops and functions.",
+        "time": "Apr 20, 2026"
+      }
+    ],
+    "upcoming": [
+      {
+        "title": "Skill Review",
+        "subtitle": "Faculty mentor follow-up \u00b7 May 1, 9:00 AM"
+      }
+    ],
+    "portfolio": [
+      {
+        "title": "Python Basics Reel Series",
+        "description": "A short-form reel playlist covering Python basics for first-year students.",
+        "status": "Completed",
+        "stack": [
+          "Python",
+          "Canva",
+          "Video Editing"
+        ]
+      }
+    ],
+    "created_at": "2026-04-24T17:01:59.306908",
+    "updated_at": "2026-04-24T17:01:59.306908"
+  },
+  {
+    "name": "S. Lakshmi Priya",
+    "roll_number": "24WJ1A6205",
+    "email": "lakshmi@gnitc.ac.in",
+    "password_hash": "scrypt:32768:8:1$FhQQumsSyz98IVge$857433e4b71a9c2f76aa95c8a8502fd0039414b0b4e388bfc40942fc5a7047e0197abcf353f0ad710c00b1e0aa087f380614a3d300d8589fd44bc5c397c4fac4",
+    "department": "CSE - Cyber Security",
+    "semester": "Semester IV",
+    "skill_score": 88,
+    "projects": 5,
+    "reels": 6,
+    "mentors": 2,
+    "endorsements": 9,
+    "profile_views": 57,
+    "reel_views": 398,
+    "status": "Active",
+    "institution": "Guru Nanak Institutions Technical Campus",
+    "academic_year": "2024-2025",
+    "initials": "SL",
+    "headline": "Building skills, proof-of-work, and campus visibility.",
+    "badges": [
+      "Project Lead",
+      "Score Climber",
+      "Campus Star"
+    ],
+    "skills": [
+      {
+        "name": "Python",
+        "score": 84,
+        "color": "linear-gradient(90deg, #1E2761, #4a6cf7)"
+      },
+      {
+        "name": "Web Development",
+        "score": 82,
+        "color": "linear-gradient(90deg, #7a5af8, #4a6cf7)"
+      },
+      {
+        "name": "DSA",
+        "score": 76,
+        "color": "linear-gradient(90deg, #10b981, #4a6cf7)"
+      },
+      {
+        "name": "Communication",
+        "score": 81,
+        "color": "linear-gradient(90deg, #f59e0b, #ef4444)"
+      }
+    ],
+    "recent_activity": [
+      {
+        "icon": "folder",
+        "title": "Uploaded project: Interview Experience Hub",
+        "subtitle": "A platform for juniors to learn from campus placement stories.",
+        "time": "Apr 23, 2026"
+      }
+    ],
+    "upcoming": [
+      {
+        "title": "Mentor Connect",
+        "subtitle": "Alumni session \u00b7 Apr 30, 3:30 PM"
+      }
+    ],
+    "portfolio": [
+      {
+        "title": "Interview Experience Hub",
+        "description": "Collects and categorizes campus placement experiences with filters by role and company.",
+        "status": "Completed",
+        "stack": [
+          "Flask",
+          "MongoDB",
+          "JavaScript"
+        ]
+      },
+      {
+        "title": "Resume Score Analyzer",
+        "description": "Analyzes resume structure and keyword coverage for student applications.",
+        "status": "Completed",
+        "stack": [
+          "Python",
+          "NLP",
+          "Bootstrap"
+        ]
+      }
+    ],
+    "created_at": "2026-04-24T17:01:59.737313",
+    "updated_at": "2026-04-24T17:01:59.737313"
+  }
+]

@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>View Detailed Report - CampusConnect</title>
+  <meta name="description" content="View the detailed skill report and project portfolio for a student on CampusConnect."/>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}"/>
+  <style>
+    .profile-top {
+      background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 60%, #4a6cf7 100%);
+      border-radius: var(--radius-lg);
+      padding: 40px;
+      color: var(--white);
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      flex-wrap: wrap;
+      margin-bottom: 36px;
+      box-shadow: var(--shadow-lg);
+      position: relative;
+      overflow: hidden;
+    }
+    .profile-top::before {
+      content: "";
+      position: absolute;
+      right: -80px;
+      top: -80px;
+      width: 280px;
+      height: 280px;
+      background: rgba(202,220,252,0.07);
+      border-radius: 50%;
+    }
+    .profile-avatar-xl {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.15);
+      backdrop-filter: blur(8px);
+      border: 3px solid rgba(255,255,255,0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      font-family: "Poppins", sans-serif;
+      font-weight: 800;
+      color: var(--white);
+      flex-shrink: 0;
+      position: relative;
+      z-index: 1;
+    }
+    .profile-info { flex: 1; position: relative; z-index: 1; }
+    .profile-info h2 { font-size: 1.7rem; margin-bottom: 6px; }
+    .profile-info p { font-size: 0.9rem; color: var(--blue-light); margin-bottom: 4px; }
+    .profile-meta { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 14px; }
+    .score-big { text-align: center; position: relative; z-index: 1; }
+    .score-big .num { font-size: 3.5rem; font-weight: 900; line-height: 1; color: var(--white); font-family: "Poppins", sans-serif; }
+    .score-big .denom { font-size: 1.1rem; color: rgba(202,220,252,0.7); }
+    .score-big .label { font-size: 0.78rem; color: var(--blue-light); margin-top: 6px; letter-spacing: 0.8px; text-transform: uppercase; }
+    .project-card {
+      background: var(--white);
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-md);
+      padding: 26px;
+      transition: var(--transition);
+      border-left: 5px solid var(--navy);
+    }
+    .project-card:hover { transform: translateX(6px); box-shadow: var(--shadow-lg); }
+    .project-card-header { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 10px; margin-bottom: 12px; }
+    .project-card h3 { font-size: 1.05rem; color: var(--navy); }
+    .project-card p { font-size: 0.86rem; color: var(--gray-500); line-height: 1.65; margin-bottom: 14px; }
+    .tech-tag {
+      display: inline-block;
+      background: var(--gray-100);
+      color: var(--navy);
+      padding: 3px 10px;
+      border-radius: 50px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      font-family: "Poppins", sans-serif;
+      margin: 2px;
+    }
+    .summary-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 28px;
+      margin-bottom: 36px;
+    }
+    .mini-stat {
+      text-align: center;
+      background: var(--gray-50);
+      border-radius: var(--radius-sm);
+      padding: 16px;
+    }
+    .mini-stat strong {
+      display: block;
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: var(--navy);
+      font-family: "Poppins", sans-serif;
+    }
+    @media (max-width: 700px) {
+      .summary-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <a href="/" class="navbar-brand">
+      <span class="brand-icon">CC</span>
+      CampusConnect
+    </a>
+    <ul class="nav-links">
+      <li><a href="/dashboard">Dashboard</a></li>
+      <li><a href="/reports">Reports</a></li>
+      <li><a href="/help">Help</a></li>
+      <li><a href="/about">About</a></li>
+      {% if logged_in_student %}
+      <li><a href="/logout" class="btn-nav">Logout</a></li>
+      {% else %}
+      <li><a href="/login" class="btn-nav">Login</a></li>
+      {% endif %}
+    </ul>
+  </nav>
+
+  <main>
+    <div class="page-header">
+      <h1>View Detailed Report</h1>
+      <p>In-depth skill analysis, project portfolio, and performance metrics for each student.</p>
+    </div>
+
+    <div class="container" style="padding-top:48px; padding-bottom:64px;">
+      <div style="margin-bottom:24px;">
+        <a href="/reports" class="btn btn-outline btn-sm">Back to Reports</a>
+      </div>
+
+      <div class="profile-top">
+        <div class="profile-avatar-xl">{{ student.initials }}</div>
+        <div class="profile-info">
+          <h2>{{ student.name }}</h2>
+          <p>Roll No: <strong>{{ student.roll_number }}</strong></p>
+          <p>Department: <strong>{{ student.department }}</strong> | {{ student.semester }}</p>
+          <p>Email: {{ student.email }}</p>
+          <div class="profile-meta">
+            <span class="badge badge-{{ status_badge(student.status) }}">{{ student.status }}</span>
+            <span class="badge badge-primary">{{ student.institution }}</span>
+            <span class="badge badge-info">{{ student.academic_year }}</span>
+          </div>
+        </div>
+        <div class="score-big">
+          <div class="num">{{ student.skill_score }}</div>
+          <div class="denom">/ 100</div>
+          <div class="label">Skill Proof Score</div>
+        </div>
+      </div>
+
+      <div class="summary-grid" id="two-col">
+        <div class="card">
+          <h3 class="section-title" style="font-size:1.2rem; margin-bottom:6px;">Skill Breakdown</h3>
+          <p class="text-muted" style="font-size:0.83rem; margin-bottom:24px;">Based on project submissions, reels, and mentor evaluations.</p>
+          {% for skill in student.skills %}
+          <div class="progress-wrap">
+            <div class="progress-label">
+              <span>{{ skill.name }}</span><span>{{ skill.score }}%</span>
+            </div>
+            <div class="progress-track">
+              <div class="progress-fill" data-width="{{ skill.score }}%" style="width:0%; background:{{ skill.color }};"></div>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+
+        <div>
+          <div class="card" style="margin-bottom:22px;">
+            <h3 class="section-title" style="font-size:1.1rem; margin-bottom:18px;">Performance Summary</h3>
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:14px;">
+              <div class="mini-stat"><strong>{{ student.projects }}</strong><span>Projects</span></div>
+              <div class="mini-stat"><strong>{{ student.reels }}</strong><span>Reels</span></div>
+              <div class="mini-stat"><strong>{{ student.mentors }}</strong><span>Mentors</span></div>
+              <div class="mini-stat"><strong>{{ student.endorsements }}</strong><span>Endorsements</span></div>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3 class="section-title" style="font-size:1.1rem; margin-bottom:16px;">Badges Earned</h3>
+            <div style="display:flex; flex-wrap:wrap; gap:8px;">
+              {% for badge in student.badges %}
+              <span class="badge badge-primary">{{ badge }}</span>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-bottom:36px;">
+        <h3 class="section-title" style="font-size:1.2rem; margin-bottom:6px;">Project Portfolio</h3>
+        <p class="text-muted" style="font-size:0.83rem; margin-bottom:24px;">Submitted projects with tech stack and current status.</p>
+        <div style="display:flex; flex-direction:column; gap:18px;">
+          {% if student.portfolio %}
+            {% for project in student.portfolio %}
+            <div class="project-card" style="border-left-color:{% if project.status == 'Completed' %}#10b981{% else %}#4a6cf7{% endif %};">
+              <div class="project-card-header">
+                <div>
+                  <h3>{{ project.title }}</h3>
+                  <p style="margin-bottom:0; margin-top:4px;">{{ project.description }}</p>
+                </div>
+                <span class="badge {% if project.status == 'Completed' %}badge-success{% else %}badge-info{% endif %}" style="white-space:nowrap;">{{ project.status }}</span>
+              </div>
+              <div>
+                {% for tech in project.stack %}
+                <span class="tech-tag">{{ tech }}</span>
+                {% endfor %}
+              </div>
+            </div>
+            {% endfor %}
+          {% else %}
+            <div class="card">
+              <p class="text-muted">No project portfolio items yet. This student can start by uploading a first campus project.</p>
+            </div>
+          {% endif %}
+        </div>
+      </div>
+
+      <div style="display:flex; gap:14px; flex-wrap:wrap;">
+        <a href="/reports" class="btn btn-primary">Back to Reports</a>
+        <button class="btn btn-accent" id="print-report-btn" type="button" onclick="window.print()">Print Report</button>
+        <button class="btn btn-outline" id="share-report-btn" type="button">Share Report</button>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-brand">CampusConnect</div>
+    <div class="footer-links">
+      <a href="/">Home</a>
+      <a href="/dashboard">Dashboard</a>
+      <a href="/reports">Reports</a>
+      <a href="/help">Help</a>
+    </div>
+    <div class="footer-divider"></div>
+    <p>&copy; 2026 Guru Nanak Institutions Technical Campus. All rights reserved.</p>
+  </footer>
+
+  <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>

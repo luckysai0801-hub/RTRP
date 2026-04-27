@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CampusConnect - Home</title>
+  <meta name="description" content="CampusConnect is a campus career platform for showcasing skills, projects, and mentor-ready profiles."/>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}"/>
+  <style>
+    .hero {
+      min-height: calc(100vh - 68px - 96px);
+      background:
+        radial-gradient(circle at 15% 20%, rgba(202,220,252,0.16), transparent 18%),
+        radial-gradient(circle at 82% 24%, rgba(74,108,247,0.18), transparent 18%),
+        linear-gradient(135deg, #111e4d 0%, #1e2761 46%, #3246a6 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 86px 24px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-content { max-width: 780px; position: relative; z-index: 1; }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 18px;
+      border-radius: 999px;
+      background: rgba(202,220,252,0.14);
+      border: 1px solid rgba(202,220,252,0.22);
+      color: var(--blue-light);
+      font-family: "Poppins", sans-serif;
+      font-size: 0.82rem;
+      margin-bottom: 24px;
+    }
+    .hero h1 {
+      font-size: 3.5rem;
+      line-height: 1.08;
+      letter-spacing: -1px;
+      color: var(--white);
+      margin-bottom: 18px;
+    }
+    .hero h1 span {
+      background: linear-gradient(90deg, #cbd9ff, #89a9ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .hero p {
+      max-width: 620px;
+      margin: 0 auto 34px;
+      line-height: 1.75;
+      color: rgba(255,255,255,0.82);
+      font-size: 1.05rem;
+    }
+    .hero-actions,
+    .micro-stats,
+    .leader-grid {
+      display: flex;
+      gap: 14px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .micro-stat {
+      min-width: 150px;
+      padding: 14px 18px;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.1);
+      color: rgba(255,255,255,0.86);
+    }
+    .micro-stat strong {
+      display: block;
+      font-family: "Poppins", sans-serif;
+      font-size: 1.3rem;
+      color: var(--white);
+      margin-bottom: 4px;
+    }
+    .section-shell {
+      padding: 76px 0;
+    }
+    .features-header {
+      text-align: center;
+      margin-bottom: 44px;
+    }
+    .feature-card,
+    .leader-card {
+      background: var(--white);
+      border-radius: 22px;
+      box-shadow: var(--shadow-md);
+      padding: 30px;
+      border: 1px solid rgba(30,39,97,0.06);
+    }
+    .feature-card {
+      position: relative;
+      overflow: hidden;
+    }
+    .feature-card::before {
+      content: "";
+      position: absolute;
+      inset: 0 0 auto 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--navy), #4a6cf7);
+    }
+    .feature-icon {
+      width: 54px;
+      height: 54px;
+      border-radius: 18px;
+      background: linear-gradient(135deg, var(--navy), #4a6cf7);
+      color: var(--white);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: "Poppins", sans-serif;
+      font-weight: 700;
+      margin-bottom: 18px;
+    }
+    .feature-card h3,
+    .leader-card h3 {
+      color: var(--navy);
+      margin-bottom: 10px;
+    }
+    .feature-card p,
+    .leader-card p {
+      color: var(--gray-500);
+      line-height: 1.7;
+    }
+    .leader-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 22px;
+    }
+    .leader-head {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 16px;
+    }
+    .leader-avatar {
+      width: 56px;
+      height: 56px;
+      border-radius: 18px;
+      background: linear-gradient(135deg, var(--navy), #4a6cf7);
+      color: var(--white);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: "Poppins", sans-serif;
+      font-weight: 700;
+    }
+    .cta-section {
+      background: linear-gradient(135deg, var(--navy), #31449d);
+      padding: 68px 24px;
+      text-align: center;
+    }
+    .cta-section h2 {
+      color: var(--white);
+      margin-bottom: 12px;
+      font-size: 2rem;
+    }
+    .cta-section p {
+      color: var(--blue-light);
+      margin-bottom: 28px;
+    }
+    @media (max-width: 900px) {
+      .leader-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 640px) {
+      .hero h1 { font-size: 2.6rem; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <a href="/" class="navbar-brand">
+      <span class="brand-icon">CC</span>
+      CampusConnect
+    </a>
+    <ul class="nav-links">
+      <li><a href="/">Home</a></li>
+      <li><a href="/about">About</a></li>
+      <li><a href="/help">Help</a></li>
+      <li><a href="/reports">Reports</a></li>
+      {% if logged_in_student %}
+      <li><a href="/dashboard" class="btn-nav">Dashboard</a></li>
+      {% else %}
+      <li><a href="/login" class="btn-nav">Login</a></li>
+      {% endif %}
+    </ul>
+  </nav>
+
+  <main>
+    <section class="hero">
+      <div class="hero-content">
+        <div class="hero-badge">Campus talent, visible and measurable</div>
+        <h1>Turn student work into a <span>career-ready profile</span></h1>
+        <p>CampusConnect brings together skills, projects, mentor signals, and performance analytics so students can build proof of work that actually travels across campus.</p>
+        <div class="hero-actions">
+          <a href="{% if logged_in_student %}/dashboard{% else %}/login{% endif %}" class="btn btn-accent">Enter Platform</a>
+          <a href="/reports" class="btn btn-outline" style="color:#fff;border-color:rgba(202,220,252,.45);">View Reports</a>
+        </div>
+        <div class="micro-stats" style="margin-top:26px;">
+          <div class="micro-stat">
+            <strong data-count="{{ summary.active_students }}">{{ summary.active_students }}</strong>
+            Active students
+          </div>
+          <div class="micro-stat">
+            <strong data-count="{{ summary.total_projects }}">{{ summary.total_projects }}</strong>
+            Projects tracked
+          </div>
+          <div class="micro-stat">
+            <strong data-count="{{ summary.mentor_sessions }}">{{ summary.mentor_sessions }}</strong>
+            Mentor connections
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-shell" style="background:var(--white);">
+      <div class="container">
+        <div class="features-header">
+          <h2 class="section-title text-center">Why this platform works</h2>
+          <p class="section-sub text-center">It focuses on proof, progress, and visibility rather than just storing student data.</p>
+        </div>
+        <div class="card-grid card-grid-3">
+          <div class="feature-card">
+            <div class="feature-icon">SP</div>
+            <h3>Skill Proof</h3>
+            <p>Students build a score from activity, projects, skill signals, and consistent momentum instead of static profile text.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">PR</div>
+            <h3>Project Showcase</h3>
+            <p>Projects become visible portfolio evidence and improve report quality, ranking, and faculty review readiness.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">MN</div>
+            <h3>Mentor Visibility</h3>
+            <p>Mentorship, endorsements, and activity tracking create a richer campus career graph around each student.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-shell" style="background:var(--gray-50);">
+      <div class="container">
+        <div class="features-header">
+          <h2 class="section-title text-center">Top student profiles</h2>
+          <p class="section-sub text-center">These cards are now powered by the same live data used in reports and student pages.</p>
+        </div>
+        <div class="leader-grid">
+          {% for student in top_students %}
+          <div class="leader-card">
+            <div class="leader-head">
+              <div class="leader-avatar">{{ student.initials }}</div>
+              <div>
+                <h3>{{ student.name }}</h3>
+                <p style="font-size:0.82rem;">{{ student.department }}</p>
+              </div>
+            </div>
+            <p>{{ student.headline }}</p>
+            <div style="display:flex; justify-content:space-between; margin:18px 0 12px; font-size:0.84rem; color:var(--gray-500);">
+              <span>Skill score</span>
+              <strong style="color:var(--navy);">{{ student.skill_score }}/100</strong>
+            </div>
+            <div style="display:flex; gap:8px; flex-wrap:wrap;">
+              {% for badge in student.badges[:3] %}
+              <span class="badge badge-primary">{{ badge }}</span>
+              {% endfor %}
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </section>
+
+    <section class="cta-section">
+      <h2>Ready to show the final platform flow?</h2>
+      <p>{{ summary.total_students }} students are already represented in the demo-ready experience.</p>
+      <a href="{% if logged_in_student %}/dashboard{% else %}/login{% endif %}" class="btn btn-accent">Launch Dashboard</a>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-brand">CampusConnect</div>
+    <div class="footer-links">
+      <a href="/">Home</a>
+      <a href="/about">About</a>
+      <a href="/help">Help</a>
+      <a href="/reports">Reports</a>
+    </div>
+    <div class="footer-divider"></div>
+    <p>&copy; 2026 Guru Nanak Institutions Technical Campus. All rights reserved.</p>
+  </footer>
+
+  <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>
